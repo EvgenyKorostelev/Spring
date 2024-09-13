@@ -1,0 +1,39 @@
+Создание проекта:
+
+mvn archetype:generate -DgroupId=re.korostelev -DartifactId=MavenProject -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false
+
+Добавление зависимостей:
+
+<dependencies>
+    <!-- Servlet API -->
+    <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>javax.servlet-api</artifactId>
+        <version>4.0.1</version>
+        <scope>provided</scope>
+    </dependency>
+    
+    <!-- JSP -->
+    <dependency>
+        <groupId>javax.servlet.jsp</groupId>
+        <artifactId>javax.servlet.jsp-api</artifactId>
+        <version>2.3.3</version>
+        <scope>provided</scope>
+    </dependency>
+</dependencies>
+
+Добавление плагинов:
+
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-war-plugin</artifactId>
+            <version>3.3.1</version>
+        </plugin>
+    </plugins>
+</build>
+
+Сборка проекта:
+
+mvn clean package

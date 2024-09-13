@@ -1,0 +1,27 @@
+Создание проекта:
+
+gradle init --type java-library
+
+Добавление зависимостей плагинов:
+
+
+
+plugins {
+    id 'java'
+    id 'war'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    providedCompile 'javax.servlet:javax.servlet-api:4.0.1'
+    providedCompile 'javax.servlet.jsp:javax.servlet.jsp-api:2.3.3'
+}
+
+
+
+Сборка проекта:
+
+gradle build
