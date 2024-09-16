@@ -1,16 +1,38 @@
 package ru.korostelev.DZSem3.controller;
 
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 import ru.korostelev.DZSem3.entity.Product;
+import ru.korostelev.DZSem3.service.ProductService;
 
 import java.util.UUID;
 
-public interface ProductController {
+@RestController
+@RequestMapping("/products/product")
+public class ProductController {
 
-    Product findProductById(UUID id);
+    @Autowired
+    private ProductService productService;
 
-    Product addNewProduct(Product product);
+    @GetMapping("/{id}")
+    public Product findProductById(@PathVariable UUID id) {
+        return productService.findProductById(id);
+    }
 
-    Product updateProductById(UUID id, Product updatedProduct);
+    @PostMapping("/new")
+    public Product addNewProduct(@RequestBody Product product) {
+        return productService.addNewProduct(product);
+    }
 
-    void deleteProductById(UUID id);
+    @PutMapping("/{id}")
+    public Product updateProductById(@PathVariable UUID id, @RequestBody Product updatedProduct) {
+        Product oldProduct = findProductById(id);
+        return productService.updateProduct(oldProduct, updatedProduct);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteProductById(@PathVariable UUID id) {
+        productService.deleteProductById(id);
+    }
 }
