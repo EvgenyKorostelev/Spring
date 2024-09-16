@@ -10,15 +10,15 @@ import java.util.UUID;
 
 
 @Service
-public class ProductServiceImp implements ProductService{
+public class ProductServiceImp implements ProductService {
 
     @Autowired
     private ProductRepository productRepository;
 
 
     @Override
-    public void addNewProduct(Product product) {
-        productRepository.saveNewProduct(product);
+    public Product addNewProduct(Product product) {
+        return productRepository.saveNewProduct(product);
     }
 
     @Override
@@ -33,7 +33,8 @@ public class ProductServiceImp implements ProductService{
 
     @Override
     public Product updateProduct(Product oldProduct, Product updatedProduct) {
-        return productRepository.saveEditProduct(oldProduct, updatedProduct);
+        updatedProduct.setId(oldProduct.getId());
+        return productRepository.saveNewProduct(updatedProduct);
     }
 
     @Override

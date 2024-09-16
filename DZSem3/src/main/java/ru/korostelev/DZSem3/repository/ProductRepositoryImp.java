@@ -16,25 +16,38 @@ public class ProductRepositoryImp implements ProductRepository {
     private Products productsList;
 
     @Override
-    public void saveNewProduct(Product product) {
+    public Product saveNewProduct(Product product) {
         List<Product> temp = productsList.getProducts();
-        temp.add(product);
-        productsList.setProducts(temp);
-        System.out.println("Создан товар с ID: " + product.getId());
-    }
-
-    @Override
-    public Product saveEditProduct(Product oldProduct, Product updatedProduct) {
-        List<Product> temp = productsList.getProducts();
+        boolean flag = false;
         for (Product o : temp) {
-            if(o.getId().equals(oldProduct.getId())){
-                o.setTitle(updatedProduct.getTitle());
-                o.setDescription(updatedProduct.getDescription());
+            if (o.getId().equals(product.getId())) {
+                o.setTitle(product.getTitle());
+                o.setDescription(product.getDescription());
+                flag = true;
+                System.out.println("Изменен товар с ID: " + product.getId());
+                break;
             }
         }
+        if (!flag) {
+            temp.add(product);
+            System.out.println("Создан товар с ID: " + product.getId());
+        }
         productsList.setProducts(temp);
-        return oldProduct;
+        return product;
     }
+
+//    @Override
+//    public Product saveEditProduct(Product oldProduct, Product updatedProduct) {
+//        List<Product> temp = productsList.getProducts();
+//        for (Product o : temp) {
+//            if(o.getId().equals(oldProduct.getId())){
+//                o.setTitle(updatedProduct.getTitle());
+//                o.setDescription(updatedProduct.getDescription());
+//            }
+//        }
+//        productsList.setProducts(temp);
+//        return oldProduct;
+//    }
 
     @Override
     public List<Product> findAllProducts() {
@@ -44,7 +57,7 @@ public class ProductRepositoryImp implements ProductRepository {
     @Override
     public Product findProductById(UUID uuid) {
         for (Product product : productsList.getProducts()) {
-            if(product.getId().equals(uuid)){
+            if (product.getId().equals(uuid)) {
                 return product;
             }
         }
@@ -55,7 +68,7 @@ public class ProductRepositoryImp implements ProductRepository {
     public void deleteProductById(UUID uuid) {
         List<Product> temp = productsList.getProducts();
         for (Product product : temp) {
-            if(product.getId().equals(uuid)){
+            if (product.getId().equals(uuid)) {
                 temp.remove(product);
                 System.out.println("Удален товар с ID: " + uuid.toString());
                 break;
