@@ -1,0 +1,7 @@
+USE `usersdb`;
+
+CREATE TABLE users (
+    id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    name VARCHAR(50),
+    email VARCHAR(50)
+);
