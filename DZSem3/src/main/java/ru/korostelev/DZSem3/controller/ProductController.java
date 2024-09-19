@@ -9,7 +9,7 @@ import ru.korostelev.DZSem3.service.ProductService;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/products/product")
+@RequestMapping("/products")
 public class ProductController {
 
     @Autowired
@@ -20,7 +20,7 @@ public class ProductController {
         return productService.findProductById(id);
     }
 
-    @PostMapping("/new")
+    @PostMapping
     public Product addNewProduct(@RequestBody Product product) {
         return productService.addNewProduct(product);
     }
