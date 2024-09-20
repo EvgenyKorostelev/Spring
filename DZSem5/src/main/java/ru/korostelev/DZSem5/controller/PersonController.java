@@ -4,6 +4,7 @@ package ru.korostelev.DZSem5.controller;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ru.korostelev.DZSem5.controller.payload.NewPersonPayload;
+import ru.korostelev.DZSem5.controller.payload.UpdatePersonPayload;
 import ru.korostelev.DZSem5.entity.Person;
 import ru.korostelev.DZSem5.service.PersonService;
 
@@ -32,5 +33,5 @@ public class PersonController {
     }
 
     @PostMapping("/{id}")
-    public Person updatePersonById(@PathVariable Integer id, )
+    public Person updatePersonById(@PathVariable Integer id, UpdatePersonPayload payload)
 }

@@ -29,9 +29,8 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public User updateUser(User oldUser, User updatedUser) {
-        User user = new User(oldUser.getId(), updatedUser.getName(), updatedUser.getEmail());
-        return usersRepository.add(user);
+    public User updateUser(User updatedUser) {
+        return usersRepository.add(updatedUser);
     }
 
     @Override

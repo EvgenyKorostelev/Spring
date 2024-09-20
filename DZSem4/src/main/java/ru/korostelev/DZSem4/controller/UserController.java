@@ -38,12 +38,10 @@ public class UserController {
 
     @PostMapping("/{id}/edit")
     public String updateUserById(@PathVariable Integer id,
-                                 @ModelAttribute(name = "user", binding = false) User user,
                                  UpdateUserPayload payload,
                                  Model model) {
-        User oldUser = userService.findUserById(id);
-        User updatedUser = new User(user.getId(), payload.name(), payload.email());
-        model.addAttribute("user", userService.updateUser(oldUser, updatedUser));
+        User updatedUser = new User(id, payload.name(), payload.email());
+        model.addAttribute("user", userService.updateUser(updatedUser));
         return "users/user_edit";
     }
 
