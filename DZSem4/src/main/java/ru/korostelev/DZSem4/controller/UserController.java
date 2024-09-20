@@ -38,7 +38,7 @@ public class UserController {
 
     @PostMapping("/{id}/edit")
     public String updateUserById(@PathVariable Integer id,
-                                 @ModelAttribute(name = "product", binding = false) User user,
+                                 @ModelAttribute(name = "user", binding = false) User user,
                                  UpdateUserPayload payload,
                                  Model model) {
         User oldUser = userService.findUserById(id);
