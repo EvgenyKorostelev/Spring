@@ -40,8 +40,8 @@ public class UserController {
     public String updateUserById(@PathVariable Integer id,
                                  UpdateUserPayload payload,
                                  Model model) {
-        User updatedUser = new User(id, payload.name(), payload.email());
-        model.addAttribute("user", userService.updateUser(updatedUser));
+        model.addAttribute("user", userService.updateUser(
+                new User(id, payload.name(), payload.email())));
         return "users/user_edit";
     }
 
