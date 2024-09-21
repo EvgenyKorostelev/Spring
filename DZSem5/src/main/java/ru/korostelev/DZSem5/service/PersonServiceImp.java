@@ -8,42 +8,34 @@ import ru.korostelev.DZSem5.repository.PersonRepository;
 import java.util.List;
 import java.util.Optional;
 
-
+@Service
 @AllArgsConstructor
-public class PersonServiceImp implements PersonService{
+public class PersonServiceImp implements PersonService {
 
     private final PersonRepository personRepository;
 
     @Override
-    public Person addPerson(Person person){
+    public Person addPerson(Person person) {
         return personRepository.save(person);
     }
 
     @Override
-    public Optional<Person> findPersonById(Integer id){
+    public Optional<Person> findPersonById(Integer id) {
         return personRepository.findById(id);
     }
 
     @Override
-    public List<Person> findAllPersons(){
+    public List<Person> findAllPersons() {
         return personRepository.findAll();
     }
 
     @Override
-    public Person updatePersonById(Integer id, Person person){
-        Optional<Person> oldPerson = findPersonById(id);
-        if(oldPerson.isPresent()){
-        Person updatedPerson = oldPerson.get();
-        updatedPerson.setName(person.getName());
-        updatedPerson.setAge(person.getAge());
-        return personRepository.save(updatedPerson);
-        } else{
-            return null;
-        }
+    public Person updatePersonById(Person person) {
+        return personRepository.save(person);
     }
 
     @Override
-    public void deletePersonById(Integer id){
+    public void deletePersonById(Integer id) {
         personRepository.deleteById(id);
     }
 }

@@ -12,13 +12,13 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/users")
+@RequestMapping("/persons")
 public class PersonController {
 
     private final PersonService personService;
 
     @PostMapping
-    public Person create(NewPersonPayload payload){
+    public Person create(@RequestBody NewPersonPayload payload){
         return personService.addPerson(new Person(null, payload.name(), payload.age()));
     }
 
@@ -32,6 +32,13 @@ public class PersonController {
         return personService.findAllPersons();
     }
 
-    @PostMapping("/{id}")
-    public Person updatePersonById(@PathVariable Integer id, UpdatePersonPayload payload)
+    @PutMapping("/{id}")
+    public Person updatePersonById(@PathVariable Integer id, @RequestBody UpdatePersonPayload payload){
+        return personService.updatePersonById(new Person(id, payload.name(), payload.age()));
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteById(@PathVariable Integer id){
+        personService.deletePersonById(id);
+    }
 }
