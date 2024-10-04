@@ -1,4 +1,4 @@
-package ru.korostelev.DZSem8.aspect;
+package ru.korostelev.catalogue.aspect;
 
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
